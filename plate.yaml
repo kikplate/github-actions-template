@@ -2,7 +2,7 @@ name: github-actions-template
 owner: kikplate-public
 description: Reusable GitHub Actions CI template for Node.js backend and frontend workspaces.
 version: 1.0.0
-
+verification_token: 4fed0e94-7d45-450b-a252-271ae7cda640
 category: ci
 
 tags:
