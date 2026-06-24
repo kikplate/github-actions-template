@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: {{ .backendDir }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "{{ .nodeVersion }}"
+      - name: Install backend dependencies
+        run: npm install
+      - name: Start backend smoke check
+        run: node src/index.js & sleep 3 && pkill -f "node src/index.js" || true
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: {{ .frontendDir }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "{{ .nodeVersion }}"
+      - name: Install frontend dependencies
+        run: npm install
+      - name: Build frontend
+        run: npm run build

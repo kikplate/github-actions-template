@@ -1,0 +1,32 @@
+name: github-actions-template
+owner: kikplate-public
+description: Reusable GitHub Actions CI template for Node.js backend and frontend workspaces.
+version: 1.0.0
+
+category: ci
+
+tags:
+  - github-actions
+  - ci
+  - nodejs
+
+schema:
+  nodeVersion:
+    type: string
+    default: "22"
+  backendDir:
+    type: string
+    default: backend
+  frontendDir:
+    type: string
+    default: frontend
+
+modules:
+  backend:
+    enabled: true
+  frontend:
+    enabled: true
+
+files:
+  - path: .github/workflows/ci.yml
+    template: https://raw.githubusercontent.com/kikplate/github-actions-template/main/templates/.github/workflows/ci.yml.tmpl
